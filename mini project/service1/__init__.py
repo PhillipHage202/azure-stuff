@@ -4,18 +4,6 @@ import azure.functions as func
 from azure.cosmos import CosmosClient, PartitionKey, exceptions
 
 
-endpoint = "https://peehage202.documents.azure.com:443/"
-key = "kILpCMZAwpelpDZMAxawxHM7pgETsCi4kiWY1qB9XZMP3CaHfCw74LUEZeWMwsLtEEmd6Vfmi6iMcJuvEyghIg=="
-client = CosmosClient(endpoint, key)
-
-database_name = "user"
-database=client.create_database_if_not_exists(id=database_name)
-
-container_name = "User"
-container = database.create_container_if_not_exists(id=container_name, partition_key=PartitionKey(path="/username"), offer_throughput=400)
-
-
-
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
